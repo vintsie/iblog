@@ -1,5 +1,7 @@
 package com.vint.iblog.service.interfaces;
 
+import org.vint.iblog.common.bean.nor.CBNArticle;
+
 /**
  * 文章管理服务类
  * <p/>
@@ -23,5 +25,14 @@ public interface ArticleSV {
      * @param writer 作者
      * @throws Exception
      */
-    public void postNewArticle(String title, String writer) throws Exception;
+    public String postNewArticle(String title, String writer) throws Exception;
+
+    /**
+     * 查询文章信息
+     *
+     * @param hCode 文章唯一标识
+     * @return  CBN
+     * @throws Exception
+     */
+    public CBNArticle getArticle(String hCode) throws Exception;
 }

@@ -10,17 +10,18 @@
 <html>
 <head>
     <%@include file="common/CommonHead.jsp" %>
-    <title>IF NOT FALSE THEN TRUE</title>
-    <link rel="stylesheet" type="text/css" href="statics/css/main.css">
 </head>
 <body>
 <div class="wrapper">
-    <%@include file="pages/header.jsp" %>
+    <%@include file="pages/Header.jsp" %>
     <div class="content">
         <div class="character">
-            <h2>最近的文章</h2>
+            <h2>最新的文章</h2>
         </div>
         123
+        <div class="character">
+            <h2>大家都在看的文章</h2>
+        </div>
     </div>
 
 </div>

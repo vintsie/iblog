@@ -10,6 +10,12 @@
         <to>/test?title=$1</to>
     </rule>
 
+    <rule>
+        <note>文章浏览请求使用的Servlet</note>
+        <from>/article/(.*)/(.*)</from>
+        <to type="forward">%{context-path}/pages/ArticleView.jsp?method=$1&amp;hCode=$2</to>
+    </rule>
+
     <!--<rule>-->
         <!--<from>/test/([0-9]+)</from>-->
         <!--<to>/test/test.jsp?id=$1</to>-->
