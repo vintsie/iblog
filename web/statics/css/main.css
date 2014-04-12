@@ -7,7 +7,8 @@ body {
     /*font: normal 0.85em Helvetica, Arial, sans-serif;*/
     font: normal 100%;
     font-family: Palatino, "Palatino Linotype", Georgia, "Times New Roman", Times, serif;
-    background-color: #003366;
+    /*background-color: #003366;*/
+    background-color: #f0f0f0;
     letter-spacing: .02em;
 }
 
@@ -43,12 +44,12 @@ small {
 
     .title {
         float: left;
-        margin-top: -20px;
+        margin-top: -10px;
     }
 
     .title h1 {
         font-weight: bold;
-        font-size: 2.5em;
+        font-size: 2.2em;
         color: #003366;
         letter-spacing: .05em;
     }
@@ -58,12 +59,19 @@ small {
         font-size: 1.2em;
         color: #006666;
     }
+
+    .a_title h2{
+        font-weight: bold;
+        font-size: 1.4em;
+        color: #006666;
+    }
+
     .contact {
         display: none;
     }
 
     .character{
-        width: 15em;
+        width: 17em;
         /*height: 1.8em;*/
         background-color: #003366;
         margin-left: -40px;
@@ -99,7 +107,7 @@ small {
 
     .title {
         float: left;
-        margin-top: -20px;
+        margin-top: -10px;
     }
 
     .title h1 {
@@ -111,7 +119,13 @@ small {
 
     .title h2 {
         font-weight: bold;
-        font-size: 1.5em;
+        font-size: 1.6em;
+        color: #006666;
+    }
+
+    .a_title h2{
+        font-weight: bold;
+        font-size: 1.8em;
         color: #006666;
     }
 
@@ -133,12 +147,13 @@ small {
     .wrapper {
         width: 800px;
         background-color: #fff;
-        margin: 60px auto;
+        margin: 30px auto;
         padding: 40px;
-        box-shadow: 10px 10px 5px #000033;
-        -moz-box-shadow: 10px 10px 5px #000033;
-        -webkit-box-shadow: 10px 10px 5px #000033;
-        border: 1px solid #003366;
+        box-shadow: 10px 10px 5px #969696;
+        -moz-box-shadow: 10px 10px 5px #969696;
+        -webkit-box-shadow: 10px 10px 5px #969696;
+        /*border: 1px solid #C0C0C0;*/
+        border: 1px solid whitesmoke;
     }
 
     .contact {
@@ -175,6 +190,12 @@ small {
     .title h2 {
         font-weight: bold;
         font-size: 1.5em;
+        color: #006666;
+    }
+
+    .a_title h2{
+        font-weight: bold;
+        font-size: 2em;
         color: #006666;
     }
 
