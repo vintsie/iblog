@@ -2,7 +2,6 @@ package com.vint.iblog.common;
 
 import com.vint.iblog.datastore.define.StaticDataDAO;
 import net.sf.jsr107cache.Cache;
-import net.sf.jsr107cache.CacheException;
 import net.sf.jsr107cache.CacheFactory;
 import net.sf.jsr107cache.CacheManager;
 import org.apache.commons.logging.Log;

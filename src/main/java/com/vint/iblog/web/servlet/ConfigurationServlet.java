@@ -34,6 +34,7 @@ public class ConfigurationServlet extends HttpServlet {
             if (StringUtils.equals("add", operation)) {
                 String dataType = req.getParameter("dataType");
                 String dataValue = req.getParameter("dataValue");
+                //String dataGroup = req.getParameter("dataGroup");
                 if (StringUtils.isEmpty(dataType) || StringUtils.isEmpty(dataValue)) {
                     pw.write("When creating new static data, neither dataType or dataValue can not be null.");
                 } else {
