@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <cache_list>
-    <cache loader="com.vint.iblog.common.cache.TestCacheDataLoader"/>
+    <!--<cache loader="com.vint.iblog.common.cache.TestCacheDataLoader"/>-->
     <cache loader="com.vint.iblog.common.cache.StaticDataCacheLoader"/>
 </cache_list>
