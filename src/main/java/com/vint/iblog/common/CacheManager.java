@@ -62,8 +62,10 @@ public class CacheManager {
         for(CacheElement ce : _caches){
             CacheDataLoader cdl = (CacheDataLoader)Class.forName(ce.getCacheClazz()).newInstance();
             Map<String, Object> data = cdl.loadData();
-            cache.put(appPreFix + ce.getCacheClazz(), data);
-            log.info("Cache[" + ce.getCacheClazz() + "] loaded, " + data.size() + " counts.");
+            if(null != data && data.size() > 0){
+                cache.put(appPreFix + ce.getCacheClazz(), data);
+                log.info("Cache[" + ce.getCacheClazz() + "] loaded, " + data.size() + " counts.");
+            }
         }
 
     }
