@@ -8,42 +8,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
-    String h1 = "FALSE/TRUE";
-    String h2 = "Code For Fun &amp; Life";
+//    String h1 = "FALSE/TRUE";
+//    String h2 = "Code For Fun &amp; Life";
+
 %>
-<div class="header">
+<div class="banner_wrapper">
+    <div class="banner">
+        <ul>
+            <li>首页</li>
+            <li style="color: darkgray">关于</li>
+        </ul>
+    </div>
+</div>
 
-    <div class="title">
-        <h1><%=h1%></h1>
-        <h2><%=h2%></h2>
-    </div><!-- end title -->
-
-    <div class="contact">
-
-        <table>
-            <tr>
-                <td>Twitter</td>
-                <td> | </td>
-                <td><a href="http://twitter.com/jandougherty">@jandougherty</a></td>
-            </tr>
-            <tr>
-                <td>Website</td>
-                <td> | </td>
-                <td><a href="http://yoursite.com">My Portfolio</a></td>
-            </tr>
-            <tr>
-                <td>Email</td>
-                <td> | </td>
-                <td><a href="mailto:jan@janswebdev.com">jan@janswebdev.com</a></td>
-            </tr>
-            <tr>
-                <td>Phone</td>
-                <td> | </td>
-                <td>(555)555-5555</td>
-            </tr>
-        </table>
-
-    </div><!-- end contact -->
-    <div style="clear: both"></div>
-
-</div><!-- end header -->
