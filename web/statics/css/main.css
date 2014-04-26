@@ -22,6 +22,8 @@ small {
 
 .content{
     font-size: 0.875em;
+    z-index: 99;
+    float: left;
 }
 
 .banner_wrapper {
@@ -29,7 +31,7 @@ small {
     vertical-align: top;
     width: 80px;
     height: 100%;
-    background-color: black;
+    background-color: #76c7c0;
     color: white;
     z-index: 100;
     position: fixed;
@@ -40,6 +42,32 @@ small {
     display: table-cell;
     vertical-align: middle;
     text-align: center
+}
+
+.banner li{
+    height: 2em;
+    cursor: pointer;
+    /*vertical-align: middle;*/
+}
+
+
+
+.banner li span{
+    font-size: 0.85em;
+    line-height: 2.5em;
+    font-weight: normal;
+}
+
+.banner li.on{
+    background-color: #528b86;
+    /*width: 60px;*/
+}
+
+.blank_block {
+    z-index: 99;
+    width: 80px;
+    height: 100%;
+    float: left
 }
 /*
 
