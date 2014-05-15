@@ -29,9 +29,6 @@ public class CharsetFormatFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
-        //String reqEncoding = request.getCharacterEncoding();
-        //System.out.println(reqEncoding);
-
         //获得请求的方式(1.post or 2.get),根据不同请求方式进行不同处理
         String method = request.getMethod();
         //1.以post方式提交的请求,直接设置编码为UTF-8
