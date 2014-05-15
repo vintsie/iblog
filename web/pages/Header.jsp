@@ -15,8 +15,8 @@
 <div class="banner_wrapper">
     <div class="banner">
         <ul>
-            <li>首页</li>
-            <li style="color: darkgray">关于</li>
+            <li class="on"><span>首页</span></li>
+            <li style="color: darkgray"><span>关于</span></li>
         </ul>
     </div>
 </div>

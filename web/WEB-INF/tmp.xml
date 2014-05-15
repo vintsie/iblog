@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<defaults>
+    <!--<interceptor>
+      <clazz name="com.ailk.appengine.complex.service.security.SecurityInterceptorImpl">
+        <property name="datasource" value="db"/>
+      </clazz>
+    </interceptor>-->
+    <!--中心的类型和实现类的对应关系-->
+    <center>
+        <!--  <property name="BillId:KeyNum" value="com.ai.common.center.BillIdCenterImpl"/>-->
+    </center>
+    <!--默认代理调用方式.默认采用pojo的模式进行调用，采用的实现类为配置的实现类-->
+    <proxy invoke="pojo" type="primitive">
+        <clazz name="com.ai.appframe2.complex.service.impl.LocalServiceInvokeImpl"/>
+    </proxy>
+    <!--默认事务信息.默认采用Required的方式进行事务操作，采用的实现类为配置的实现类-->
+    <transaction type="Required">
+        <!--<clazz name="com.ai.appframe2.complex.transaction.impl.LocalTransactionImpl"/>-->
+        <clazz name="com.ai.appframe2.complex.transaction.impl.LocalMutilTransactionImpl"/>
+        <!--<listener name="com.ailk.appengine.complex.transaction.listener.TestListenerImpl"/>-->
+        <!--映射每个服务模块对应的事务数据源，可以具体到类名-->
+        <mapping>
+            <property name="com.ai.appframe2.complex.self.service.base" value="base"/>
+            <property name="com.ai.appframe2.complex.self.service.check" value="base"/>
+            <property name="com.ai.secframe" value="sec"/>
+            <property name="com.ai.frame" value="base"/>
+            <property name="com.ai.comframe" value="base"/>
+            <property name="com.ailk.demo.service" value="base"/>
+            <property name="com.ailk.so.pageflow.service" value="base"/>
+            <property name="com.ailk.appengine.common" value="base"/>
+            <property name="com.ailk.appengine.secres" value="base"/>
+            <property name="com.ailk.util.service" value="base"/>
+            <property name="com.asiainfo.crm.ams.common.base.service" value="base"/>
+            <property name="com.ai.secframe.sysmgr.dao" value="sec"/>
+            <property name="com.asiainfo.crm.res.rescfg.service" value="res"/>
+
+            <property name="com.ai.common" value="base"/>
+            <property name="com.ailk.common" value="meta"/>
+            <property name="com.ailk.upc.out.service" value="product"/>
+
+            <property name="com.ailk.metadataapp.service" value="meta"/>
+            <property name="com.ailk.upc.service" value="product"/>
+            <property name="com.ailk.metadata.service" value="meta"/>
+            <property name="com.ailk.dynamic.service" value="meta"/>
+            <property name="com.ailk.configTask.service" value="product"/>
+            <property name="com.ailk.uitemplate.service" value="meta"/>
+            <property name="com.ailk.billData.service" value="product"/>
+        </mapping>
+    </transaction>
+    <!--默认数据源信息-->
+    <datasource>
+        <!--根据base取数据库配置，然后以本配置中的覆盖除base以外的连接池的配置-->
+        <!--默认 type=dbcp  db=oracle -->
+        <!--映射每个DAO模块对应的操作数据源-->
+
+        <clazz name="com.ai.appframe2.complex.datasource.impl.LocalMutilDataSourceImpl">
+            <property name="tableName" value="cfg_db_acct"/>
+        </clazz>
+        <pool name="base" primary="true" type="SELF">
+            <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+            <property name="url" value="jdbc:mysql://10.11.20.84:3601/base"/>
+            <property name="username" value="BASE"/>
+            <property name="password" value="poc123"/>
+            <property name="initialSize" value="0"/>
+            <property name="maxActive" value="10"/>
+            <property name="maxIdle" value="2"/>
+            <property name="showSql" value="true"/>
+            <!-- 连接池有效性检查-->
+            <property name="validationQuery" value="select 1 from dual"/>
+            <property name="testWhileIdle" value="true"/>
+            <property name="testOnBorrow" value="false"/>
+            <property name="testOnReturn" value="false"/>
+            <!-- 最多20秒检查到连接失效-->
+            <property name="timeBetweenEvictionRunsMillis" value="20000"/>
+            <property name="minEvictableIdleTimeMillis" value="-1"/>
+            <property name="softMinEvictableIdleTimeMillis" value="1800000"/>
+            <property name="numTestsPerEvictionRun" value="2"/>
+        </pool>
+        <pool name="product" type="SELF" db="ORACLE">
+            <property name="initialSize" value="0"/>
+            <property name="maxActive" value="10"/>
+            <property name="maxIdle" value="2"/>
+            <!-- 连接池有效性检查-->
+            <property name="validationQuery" value="select 1 from dual"/>
+            <property name="testWhileIdle" value="true"/>
+            <property name="testOnBorrow" value="false"/>
+            <property name="testOnReturn" value="false"/>
+            <!-- 最多20秒检查到连接失效-->
+            <property name="timeBetweenEvictionRunsMillis" value="20000"/>
+            <property name="minEvictableIdleTimeMillis" value="-1"/>
+            <property name="softMinEvictableIdleTimeMillis" value="1800000"/>
+            <property name="numTestsPerEvictionRun" value="2"/>
+        </pool>
+        <pool name="sec" type="SELF" db="ORACLE">
+            <property name="initialSize" value="0"/>
+            <property name="maxActive" value="10"/>
+            <property name="maxIdle" value="2"/>
+            <!-- 连接池有效性检查-->
+            <property name="validationQuery" value="select 1 from dual"/>
+            <property name="testWhileIdle" value="true"/>
+            <property name="testOnBorrow" value="false"/>
+            <property name="testOnReturn" value="false"/>
+            <!-- 最多20秒检查到连接失效-->
+            <property name="timeBetweenEvictionRunsMillis" value="20000"/>
+            <property name="minEvictableIdleTimeMillis" value="-1"/>
+            <property name="softMinEvictableIdleTimeMillis" value="1800000"/>
+            <property name="numTestsPerEvictionRun" value="2"/>
+        </pool>
+        <pool name="meta" type="SELF" db="ORACLE">
+            <property name="initialSize" value="0"/>
+            <property name="maxActive" value="10"/>
+            <property name="maxIdle" value="2"/>
+            <!-- 连接池有效性检查-->
+            <property name="validationQuery" value="select 1 from dual"/>
+            <property name="testWhileIdle" value="true"/>
+            <property name="testOnBorrow" value="false"/>
+            <property name="testOnReturn" value="false"/>
+            <!-- 最多20秒检查到连接失效-->
+            <property name="timeBetweenEvictionRunsMillis" value="20000"/>
+            <property name="minEvictableIdleTimeMillis" value="-1"/>
+            <property name="softMinEvictableIdleTimeMillis" value="1800000"/>
+            <property name="numTestsPerEvictionRun" value="2"/>
+        </pool>
+        <pool name="res" type="SELF" db="ORACLE">
+            <property name="initialSize" value="0"/>
+            <property name="maxActive" value="10"/>
+            <property name="maxIdle" value="2"/>
+            <!-- 连接池有效性检查-->
+            <property name="validationQuery" value="select 1 from dual"/>
+            <property name="testWhileIdle" value="true"/>
+            <property name="testOnBorrow" value="false"/>
+            <property name="testOnReturn" value="false"/>
+            <!-- 最多20秒检查到连接失效-->
+            <property name="timeBetweenEvictionRunsMillis" value="20000"/>
+            <property name="minEvictableIdleTimeMillis" value="-1"/>
+            <property name="softMinEvictableIdleTimeMillis" value="1800000"/>
+            <property name="numTestsPerEvictionRun" value="2"/>
+        </pool>
+        <mapping>
+            <property name="com.asiainfo.appframe.ext.exeframe.ws.query.impl.dao" value="base"/>
+            <property name="com.ai.appframe2.complex.self.dao.base" value="base"/>
+            <property name="com.ai.appframe2.complex.self.service.check" value="base"/>
+            <property name="com.ai.secframe.dao" value="sec"/>
+            <property name="com.ai.frame" value="base"/>
+            <property name="com.ai.comframe" value="base"/>
+            <property name="com.ailk.demo.dao" value="base"/>
+            <property name="com.ailk.so.pageflow.dao" value="base"/>
+            <property name="com.ailk.appengine.common.dao" value="base"/>
+            <property name="com.ailk.appengine.secres.dao" value="base"/>
+            <property name="com.ailk.example.orgmodel.dao" value="sec"/>
+            <property name="com.ailk.util.dao" value="base"/>
+            <property name="com.asiainfo.crm.ams.common.base.dao" value="base"/>
+            <property name="com.ai.secframe.sysmgr.dao" value="sec"/>
+            <property name="com.asiainfo.crm.res.rescfg.dao" value="res"/>
+
+            <property name="com.ailk.billData.dao" value="product"/>
+            <property name="com.ai.common.dao" value="base"/>
+            <property name="com.ailk.common.dao" value="meta"/>
+
+            <property name="com.ailk.configTask.dao" value="product"/>
+            <property name="com.ailk.dynamic.service" value="meta"/>
+            <property name="com.ailk.metadata.dao" value="meta"/>
+            <property name="com.ailk.metadataapp" value="meta"/>
+            <property name="com.ailk.uitemplate.dao" value="meta"/>
+            <property name="com.ailk.upc.dao" value="product"/>
+            <property name="com.ailk.upc.out.dao" value="product"/>
+        </mapping>
+    </datasource>
+    <!--包含的服务配置文件-->
+    <!--平台-->
+    <include type="sv" classpath="system/service/appframe-service.xml"/>
+</defaults>

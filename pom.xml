@@ -88,5 +88,17 @@
             <optional>true</optional>
         </dependency>
 
+        <dependency>
+            <groupId>com.google.http-client</groupId>
+            <artifactId>google-http-client</artifactId>
+            <version>1.18.0-rc</version>
+        </dependency>
+        <!-- convert GitHub Flavored Markdown to html -->
+        <dependency>
+            <groupId>org.pegdown</groupId>
+            <artifactId>pegdown</artifactId>
+            <version>1.4.2</version>
+        </dependency>
+
     </dependencies>
 </project>
