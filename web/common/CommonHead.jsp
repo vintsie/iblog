@@ -14,4 +14,4 @@
 <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 <![endif]-->
 <title>FALSE/TRUE</title>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/statics/css/main.css">
+<%--<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/statics/css/main.css">--%>

@@ -11,6 +11,11 @@
     </rule>
 
     <rule>
+        <from>/_admin/vc</from>
+        <to type="forward">%{context-path}/admin/VcReq.jsp</to>
+    </rule>
+
+    <rule>
         <note>文章浏览请求使用的Servlet</note>
         <from>/article/(.*)/(.*)</from>
         <to type="forward">%{context-path}/pages/ArticleView.jsp?method=$1&amp;hCode=$2</to>

@@ -11,20 +11,21 @@
 <head>
     <%@include file="common/CommonHead.jsp" %>
 
-    <style>
-        .left_banner li {
-            margin-bottom: 10px;
-        }
-    </style>
 </head>
 <body>
 <div class="wrapper">
 
-    <%@include file="pages/Header.jsp" %>
-    <div class="blank_block"></div>
-    <div class="content">
-        <div style="position: absolute;top:50%; left: 50%">Loading...</div>
-    </div>
+    <%--<%@include file="pages/Header.jsp" %>--%>
+    <%--<div class="blank_block"></div>--%>
+    <%--<div class="content">--%>
+        <%--<div style="position: absolute;top:50%; left: 50%">Loading...</div>--%>
+    <%--</div>--%>
+
+<div class="header">
+    <h1 class="title">
+        <a href="/" title="True Or False"><strong>True</strong> or <strong>False</strong></a>
+    </h1>
+</div>
 </div>
 </body>
 </html>

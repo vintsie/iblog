@@ -6,8 +6,9 @@ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, 
 body {
     /*font: normal 0.85em Helvetica, Arial, sans-serif;*/
     font: normal 100%;
-    font-family: Palatino, "Palatino Linotype", Georgia, "Times New Roman", Times, serif;
+    /*font-family: Palatino, "Palatino Linotype", Georgia, "Times New Roman", Times, serif;*/
     /*background-color: #003366;*/
+    font-family:"Times New Roman", Times, serif;
     background-color: #fff;
     letter-spacing: .02em;
 }
