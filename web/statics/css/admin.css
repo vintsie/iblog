@@ -1,6 +1,7 @@
 body, select, input{
     /*font-family: "Microsoft YaHei" ! important;*/
-    font-family: "Microsoft YaHei", Times, TimesNR, 'New Century Schoolbook',Georgia, 'New York', serif;
+    /*font-family: "Microsoft YaHei", Times, TimesNR, 'New Century Schoolbook',Georgia, 'New York', serif;*/
+    font-family: Times, TimesNR, 'New Century Schoolbook',Georgia, 'New York', serif;
     font-size: 100%;
 }
 
@@ -51,11 +52,12 @@ td{
 }
 .input_title{
     width: 5em;
-    height: 35px;
+    /*height: 35px;*/
     /*margin-top: 3em;*/
     color: #fff;
     font-weight: bold;
-    line-height: 2em;
+    padding: 10px 3px 10px 0;
+    /*line-height: 2em;*/
     text-align: right;
     background-color: #e2534b;
 }
@@ -74,9 +76,13 @@ td{
     /*line-height: 5em;*/
 }
 
+.clickedColor{
+    background-color: darkred;
+}
+
 div.btn{
     width: 60px;
-    padding: 10px 30px 10px 30px;
+    padding: 10px 20px 10px 20px;
     text-align: center;
     background-color: #e2534b;
     border: 1px solid #ffffff;

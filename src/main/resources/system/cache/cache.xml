@@ -2,4 +2,5 @@
 <cache_list>
     <!--<cache loader="com.vint.iblog.common.cache.TestCacheDataLoader"/>-->
     <cache loader="com.vint.iblog.common.cache.StaticDataCacheLoader"/>
+    <cache loader="com.vint.iblog.common.cache.ArticleCatalogCacheLoader"/>
 </cache_list>

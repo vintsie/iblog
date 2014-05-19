@@ -5,14 +5,8 @@
 <urlrewrite>
 
     <rule>
-        <note>Just For Testing</note>
-        <from>/test/(.*)</from>
-        <to>/test?title=$1</to>
-    </rule>
-
-    <rule>
-        <from>/_admin/vc</from>
-        <to type="forward">%{context-path}/admin/VcReq.jsp</to>
+        <from>/_admin/version-control-file-pull/(.*)</from>
+        <to type="forward">%{context-path}/admin/VcReq.jsp?token=$1</to>
     </rule>
 
     <rule>

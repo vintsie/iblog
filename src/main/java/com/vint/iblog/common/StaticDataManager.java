@@ -1,8 +1,9 @@
 package com.vint.iblog.common;
 
 import com.vint.iblog.common.cache.StaticDataCacheLoader;
-import org.vint.iblog.common.bean.config.StaticData;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -23,15 +24,16 @@ public class StaticDataManager {
      * @return  ArrayList&lt;StaticData&gt;
      * @throws Exception
      */
-    public static Set<StaticData> getStaticData(String dataType) throws Exception {
+    public static Set getStaticData(String dataType) throws Exception {
         //Object object = staticDataCache.get(dataType);
         //if(null == object) return null;
         //return (List<StaticData>) object;
         Map<String, Object> staticData =
                 CacheManager.getData(StaticDataCacheLoader.class.getName());
-        @SuppressWarnings("unchecked")
-        Set<StaticData> data = (Set)staticData.get(dataType);
-        return data;
+        if(null == staticData) {
+            return Collections.EMPTY_SET;
+        }
+        return (Set)staticData.get(dataType);
     }
 
 /*    static {

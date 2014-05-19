@@ -13,5 +13,5 @@
 <!--[if lt IE 9]>
 <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 <![endif]-->
-<title>FALSE/TRUE</title>
+<%@ page errorPage="/pages/Error.jsp" %>
 <%--<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/statics/css/main.css">--%>
