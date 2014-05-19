@@ -33,7 +33,6 @@
         <location>/pages/Error.jsp</location>
     </error-page>
 
-
     <filter>
         <filter-name>CharsetFormatFilter</filter-name>
         <filter-class>com.vint.iblog.web.filter.CharsetFormatFilter</filter-class>
@@ -88,7 +87,15 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>VcFileRequestServlet</servlet-name>
-        <url-pattern>/vcr</url-pattern>
+        <url-pattern>/_admin/vcr.req</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>Command</servlet-name>
+        <servlet-class>com.vint.iblog.web.servlet.CommandHandler</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Command</servlet-name>
+        <url-pattern>/_admin/command</url-pattern>
+    </servlet-mapping>
 </web-app>

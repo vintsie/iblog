@@ -13,17 +13,6 @@ import org.pegdown.PegDownProcessor;
  */
 public class GitHubApiToolTest {
     @Test
-    public void testFormatDirUrl() throws Exception {
-
-        MatcherAssert.assertThat(GitHubApiTool.formatDefaultRefUrl("vintsie", "notebook", "contents"),
-                new IsEqual<String>("https://api.github.com/repos/vintsie/notebook/contents"));
-//        Assert.assertSame("https://api.github.com/repos/vintsie/notebook/contents",
-//                GitHubApiTool.formatDirUrl("vintsie", "notebook", "contents"));
-    }
-
-
-
-    @Test
     public void testPullFileContent() throws Exception {
         JSONObject json = GitHubApiTool.pull(
                 new String[]{"vintsie", "notebook", "_2014/Test_Code_highlight.md"});

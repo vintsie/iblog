@@ -1,7 +1,13 @@
 package com.vint.iblog.web.servlet;
 
+import com.vint.iblog.common.SequenceManager;
+import com.vint.iblog.service.interfaces.ArticleSV;
+import com.vint.iblog.service.interfaces.VersionControlSV;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.vint.iblog.common.bean.nor.CBNArticle;
+import org.vintsie.jcobweb.proxy.ServiceFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -26,18 +32,31 @@ public class VcFileRequestServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String vcType = req.getParameter("vcType");
-        //req.setCharacterEncoding("utf-8");
-        PrintWriter pw = resp.getWriter();
-        if("gh".equalsIgnoreCase(vcType)){
-            String contentType = req.getContentType();
-            log.error(contentType);
-            String path = req.getParameter("path");
-            log.error(path);
+        String owner = req.getParameter("owner");
+        String repo = req.getParameter("repo");
+        String path = req.getParameter("path");
 
-        }else{
-            pw.write("unsupported version control type.");
+        StringBuilder sb = new StringBuilder();
+
+        if (StringUtils.isEmpty(owner) || StringUtils.isEmpty(repo) || StringUtils.isEmpty(path)) {
+            sb.append("参数不可为空");
+        } else {
+            try {
+                VersionControlSV versionControlSV = ServiceFactory.getService(VersionControlSV.class);
+                CBNArticle article = versionControlSV.pullGitHubFile(owner, repo, path);
+                if(null != article){
+                    ArticleSV articleSV = ServiceFactory.getService(ArticleSV.class);
+                    article.sethCode(SequenceManager.getInstance().getNewSeq());
+                    articleSV.saveArticle(article);
+                }
+                //log.error(article);
+            } catch (Exception e) {
+                log.error("发生了异常", e);
+                sb.append("发生了异常").append(e.getMessage());
+            }
         }
+        PrintWriter pw = resp.getWriter();
+        pw.write(sb.toString());
 
         pw.flush();
         pw.close();

@@ -1,5 +1,9 @@
 package com.vint.iblog.service.interfaces;
 
+import org.vint.iblog.common.bean.nor.CBNGitHubCatalog;
+
+import java.util.List;
+
 /**
  * Common service
  *
@@ -23,4 +27,7 @@ public interface CommonSV {
      * @throws Exception
      */
     public void modifySeqByType(String type, String seq) throws Exception;
+
+
+    public List<CBNGitHubCatalog> getGitHubCatalogs() throws Exception;
 }

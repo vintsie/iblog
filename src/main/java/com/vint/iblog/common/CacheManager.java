@@ -35,9 +35,9 @@ public class CacheManager {
     static Cache cache = null;
     static List<CacheElement> _caches = new ArrayList<CacheElement>();
 
-    public static List<CacheElement> getCacheElement(){
-        return _caches;
-    }
+//    public static List<CacheElement> getCacheElement(){
+//        return _caches;
+//    }
 
     /**
      * get cached data
@@ -61,13 +61,30 @@ public class CacheManager {
         }
         for(CacheElement ce : _caches){
             CacheDataLoader cdl = (CacheDataLoader)Class.forName(ce.getCacheClazz()).newInstance();
+            long st = System.currentTimeMillis();
             Map<String, Object> data = cdl.loadData();
             if(null != data && data.size() > 0){
                 cache.put(appPreFix + ce.getCacheClazz(), data);
-                log.info("Cache[" + ce.getCacheClazz() + "] loaded, " + data.size() + " counts.");
+                log.info("Cache[" + ce.getCacheClazz() + "] loaded, " + data.size() + " counts. cost:" +
+                        (System.currentTimeMillis() - st) + "ms");
             }
         }
+    }
 
+    public static void reloadAll() throws Exception{
+        if(log.isInfoEnabled()){
+            log.info("Start to reload all caches.");
+        }
+        load();
+    }
+
+    public static void load(String cln) throws Exception{
+        CacheDataLoader cdl = (CacheDataLoader)Class.forName(cln).newInstance();
+        Map<String, Object> data = cdl.loadData();
+        if(null != data && data.size() > 0){
+            cache.put(appPreFix + cln, data);
+            log.info("Cache[" + cln + "] loaded, " + data.size() + " counts.");
+        }
     }
 
     static{
