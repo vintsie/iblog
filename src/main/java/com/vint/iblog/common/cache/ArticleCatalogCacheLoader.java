@@ -23,6 +23,7 @@ public class ArticleCatalogCacheLoader implements CacheDataLoader {
         if (!catalogs.isEmpty()) {
             for (CBNGitHubCatalog catalog : catalogs) {
                 data.put(catalog.getRepoInfo(), new ArrayList<ArticleSummary>());
+                data.put(catalog.getRepoInfo()+"^base", catalog);
             }
             ArticleSV articleSV = ServiceFactory.getService(ArticleSV.class);
             for (int i = 1; ; i++) {
@@ -35,6 +36,9 @@ public class ArticleCatalogCacheLoader implements CacheDataLoader {
                         ArticleSummary as = new ArticleSummary();
                         as.setTitle(article.getTitle());
                         as.setSha(article.getSha());
+                        as.setDate(article.getCreateDate());
+                        as.setRepoInfo(article.getRepoInfo());
+                        as.setHexCode(article.gethCode());
                         List list = (List) data.get(article.getRepoInfo());
                         list.add(as);
                     }
@@ -54,10 +58,37 @@ public class ArticleCatalogCacheLoader implements CacheDataLoader {
         return null;
     }
 
-    public static class ArticleSummary implements Serializable{
+    public static class ArticleSummary implements Serializable, Comparable<ArticleSummary>{
 
         private String title;
         private String sha;
+        private Date date;
+        private String repoInfo;
+        private String hexCode;
+
+        public String getHexCode() {
+            return hexCode;
+        }
+
+        public void setHexCode(String hexCode) {
+            this.hexCode = hexCode;
+        }
+
+        public String getRepoInfo() {
+            return repoInfo;
+        }
+
+        public void setRepoInfo(String repoInfo) {
+            this.repoInfo = repoInfo;
+        }
+
+        public Date getDate() {
+            return date;
+        }
+
+        public void setDate(Date date) {
+            this.date = date;
+        }
 
         public String getTitle() {
             return title;
@@ -73,6 +104,11 @@ public class ArticleCatalogCacheLoader implements CacheDataLoader {
 
         public void setSha(String sha) {
             this.sha = sha;
+        }
+
+        @Override
+        public int compareTo(ArticleSummary o) {
+            return o.getDate().compareTo(this.getDate());
         }
     }
 }

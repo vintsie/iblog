@@ -1,5 +1,3 @@
-<%@ page import="java.io.PrintWriter" %>
-<%@ page import="java.io.StringWriter" %>
 <%--
   Created by IntelliJ IDEA.
   User: Vin
@@ -16,9 +14,11 @@
 <body>
     <div class="wrapper">
         <%--<%@include file="/pages/Header.jsp" %>--%>
-        <div class="content" style="text-align: center">
-            Error!
-        </div>
+            <%=request.getParameter("errmsg")%>
+        <%
+
+        %>
+
     </div>
 </body>
 </html>

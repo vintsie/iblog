@@ -8,16 +8,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
-//    String h1 = "FALSE/TRUE";
-//    String h2 = "Code For Fun &amp; Life";
-
 %>
-<div class="banner_wrapper">
-    <div class="banner">
-        <ul>
-            <li class="on"><span>首页</span></li>
-            <li style="color: darkgray"><span>关于</span></li>
-        </ul>
+<div class="header">
+    <div class="h1_d">
+        <h1 class="title">
+            <a href="/" title="True Or False">TRUE<strong>FALSE</strong></a>
+        </h1></div>
+    <div class="nav">
+        <a href="/catalog/programming">Programming</a>
+        <a href="/catalog/life">Life</a>
     </div>
+    <div style="clear: both"></div>
 </div>
 

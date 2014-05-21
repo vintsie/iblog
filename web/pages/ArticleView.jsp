@@ -1,6 +1,8 @@
 <%@ page import="org.vint.iblog.common.bean.nor.CBNArticle" %>
 <%@ page import="com.vint.iblog.service.interfaces.ArticleSV" %>
 <%@ page import="org.vintsie.jcobweb.proxy.ServiceFactory" %>
+<%@ page import="org.vint.iblog.common.util.TimeUtil" %>
+<%@ page import="org.vint.iblog.common.util.CommonUtil" %>
 <%--
   Created by IntelliJ IDEA.
   User: Vin
@@ -18,17 +20,22 @@
         ArticleSV articleSV = ServiceFactory.getService(ArticleSV.class);
         CBNArticle article = articleSV.getArticle(hCode);
     %>
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/statics/css/markdown.css">
 </head>
 <body>
+
+
 <div class="wrapper">
+    <%@include file="Header.jsp"%>
 
-    <jsp:include page="/pages/aHeader.jsp">
-        <jsp:param name="title" value="<%=article.getTitle()%>" />
-    </jsp:include>
+    <h2 style="margin-bottom: 5px"><%=CommonUtil.getNoMdTitle(article.getTitle())%></h2>
+    <span class="meta"><%=TimeUtil.getDate(article.getCreateDate())%></span>
 
-    <div class="content">
+    <div class="a_content">
         <%=article.getContent()%>
     </div>
+
+    <%@include file="Footer.jsp"%>
 </div>
 </body>
 </html>

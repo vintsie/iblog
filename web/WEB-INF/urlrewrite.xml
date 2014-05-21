@@ -16,6 +16,33 @@
     </rule>
 
     <!--<rule>-->
+        <!--<from>/</from>-->
+        <!--<to type="forward">%{context-path}/pages/Catalog.jsp?catalog=programming</to>-->
+    <!--</rule>-->
+
+    <!--<rule>-->
+        <!--<from>^/$</from>-->
+        <!--<to type="redirect">%{context-path}/index.jsp</to>-->
+    <!--</rule>-->
+
+    <rule>
+        <from>^/catalog/(.*)$</from>
+        <to>%{context-path}/pages/Catalog.jsp?catalog=$1</to>
+    </rule>
+
+    <rule>
+        <from>^/posts/(.*)/(.*)</from>
+        <to type="forward">%{context-path}/pages/ArticleView.jsp?catalog=$1&amp;hCode=$2</to>
+    </rule>
+
+    <!--<rule>-->
+        <!--<from>^/life/(.*)</from>-->
+        <!--<to type="forward">%{context-path}/pages/ArticleView.jsp?catalog=life&amp;hCode=$2</to>-->
+    <!--</rule>-->
+
+
+
+    <!--<rule>-->
         <!--<from>/test/([0-9]+)</from>-->
         <!--<to>/test/test.jsp?id=$1</to>-->
     <!--</rule>-->

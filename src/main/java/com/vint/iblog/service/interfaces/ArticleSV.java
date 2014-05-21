@@ -1,5 +1,6 @@
 package com.vint.iblog.service.interfaces;
 
+import com.vint.iblog.common.cache.ArticleCatalogCacheLoader;
 import org.vint.iblog.common.bean.nor.CBNArticle;
 
 import java.util.List;
@@ -10,6 +11,13 @@ import java.util.List;
  * Created by Vin on 14-2-13.
  */
 public interface ArticleSV {
+
+    /**
+     * 根据文章的唯一编码，删除文章。
+     * @param hexCode 16进制字符串
+     * @throws Exception
+     */
+    public void deleteArticle(String hexCode) throws Exception;
 
     /**
      * 查询文章信息
@@ -28,6 +36,14 @@ public interface ArticleSV {
      * @throws Exception
      */
     public List<CBNArticle> getArticles(int pageNum, int pageSize) throws Exception;
+
+    /**
+     * 使用目录从缓存中查询文章目录
+     * @param catalog   目录
+     * @return  缓存的文章简述集合
+     * @throws Exception
+     */
+    public List<ArticleCatalogCacheLoader.ArticleSummary> getCachedArticleList(String catalog) throws Exception;
 
     /**
      * 修改文章

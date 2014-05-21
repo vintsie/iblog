@@ -1,5 +1,6 @@
 package com.vint.iblog.web.servlet;
 
+import com.vint.iblog.command.service.impl.CacheRefreshExe;
 import com.vint.iblog.command.service.impl.DevTempExe;
 import com.vint.iblog.command.service.impl.GitHubRefreshExe;
 import com.vint.iblog.command.service.interfaces.ICommandExe;
@@ -29,6 +30,7 @@ public class CommandHandler extends HttpServlet {
     private static HashMap<String, String> handlers = new HashMap<String, String>() {
         {
             put("C001", GitHubRefreshExe.class.getName());
+            put("C002", CacheRefreshExe.class.getName());
             put("dev", DevTempExe.class.getName());
         }
     };
@@ -49,8 +51,10 @@ public class CommandHandler extends HttpServlet {
             } else if (!handlers.containsKey(command)) {
                 pw.write("No command mapping found.");
             } else {
+                long startTime = System.currentTimeMillis();
                 ICommandExe exe = (ICommandExe) Class.forName(handlers.get(command)).newInstance();
                 exe.execute(getParamMap(req));
+                pw.write("Yes, command has been executed. cost:" + (System.currentTimeMillis() - startTime) + "ms.");
             }
         } catch (Exception e) {
             log.error("Exception..", e);
