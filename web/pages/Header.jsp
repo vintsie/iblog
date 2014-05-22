@@ -12,7 +12,7 @@
 <div class="header">
     <div class="h1_d">
         <h1 class="title">
-            <a href="/" title="True Or False">TRUE<strong>FALSE</strong></a>
+            <a href="/">TRUE<strong>FALSE</strong></a>
         </h1></div>
     <div class="nav">
         <a href="/catalog/programming">Programming</a>

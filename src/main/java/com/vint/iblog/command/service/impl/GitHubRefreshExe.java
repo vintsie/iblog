@@ -13,10 +13,7 @@ import org.vint.iblog.common.bean.nor.CBNArticle;
 import org.vint.iblog.common.bean.nor.CBNGitHubCatalog;
 import org.vintsie.jcobweb.proxy.ServiceFactory;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 刷新GitHub内容
@@ -32,7 +29,6 @@ public class GitHubRefreshExe implements ICommandExe {
     @Override
     public void execute(Map params) throws Exception {
         long startTimes = System.currentTimeMillis();
-        //String cmd = MapUtils.getString(params, "cmd");
 
         // 获取GitHub目录列表
         CommonSV commonSV = ServiceFactory.getService(CommonSV.class);
@@ -52,7 +48,7 @@ public class GitHubRefreshExe implements ICommandExe {
             List<String> remoteFileNames = parseFileNames(catalogFiles);
             Map<String, String> remoteFileSha = parseFileSha(catalogFiles);
 
-            List cached = (List)articleCatalog.get(catalog.getRepoInfo());
+            Set cached = (Set)articleCatalog.get(catalog.getRepoInfo());
             for(Object cache : cached){
                 ArticleCatalogCacheLoader.ArticleSummary as = (ArticleCatalogCacheLoader.ArticleSummary) cache;
                 if(!remoteFileNames.contains(as.getTitle())){

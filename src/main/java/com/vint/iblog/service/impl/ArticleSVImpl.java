@@ -12,10 +12,7 @@ import org.apache.commons.logging.LogFactory;
 import org.vint.iblog.common.bean.nor.CBNArticle;
 import org.vintsie.jcobweb.proxy.ServiceFactory;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Pattern;
 
 /**
@@ -63,17 +60,34 @@ public class ArticleSVImpl implements ArticleSV {
 
         List<ArticleCatalogCacheLoader.ArticleSummary> ass = new ArrayList<ArticleCatalogCacheLoader.ArticleSummary>();
         for (String repoInfo : foundedRepoInfo) {
-            List tmp = (List) cachedData.get(repoInfo);
+            Set tmp = (Set) cachedData.get(repoInfo);
             if (null != tmp && tmp.size() > 0) {
                 for (Object obj : tmp) {
                     ass.add((ArticleCatalogCacheLoader.ArticleSummary) obj);
                 }
             }
         }
-        if(!ass.isEmpty()){
-            Collections.sort(ass);
-        }
         return ass;
+    }
+
+    @Override
+    public List<ArticleCatalogCacheLoader.ArticleSummary>
+    getCachedArticleList(int pageNum, String catalog) throws Exception {
+        Map<String, Object> cachedData = CacheManager.getData(ArticleCatalogCacheLoader.class.getName());
+        List<String> foundedRepoInfo = new ArrayList<String>();
+        for (String repoInfoKey : cachedData.keySet()) {
+            if (repoInfoKey.split(Pattern.quote("^")).length == 3) {
+                foundedRepoInfo.add(repoInfoKey);
+            }
+        }
+        Set<ArticleCatalogCacheLoader.ArticleSummary> all = new TreeSet<ArticleCatalogCacheLoader.ArticleSummary>();
+        for(String repoInfo : foundedRepoInfo){
+            Set cachedOne = (Set)cachedData.get(repoInfo);
+            for(Object obj : cachedOne){
+                all.add((ArticleCatalogCacheLoader.ArticleSummary) obj);
+            }
+        }
+        return new ArrayList<ArticleCatalogCacheLoader.ArticleSummary>(all);
     }
 
     @Override
@@ -85,15 +99,14 @@ public class ArticleSVImpl implements ArticleSV {
     @Override
     public int readArticleViewCount(int articleId) throws Exception {
         //log.debug("-------------ArticleSV is called.");
-        int count = ServiceFactory.getService(ArticleDAO.class).getArticleViewCount(12);
-        return count;
+        return ServiceFactory.getService(ArticleDAO.class).getArticleViewCount(12);
     }
 
     @Override
     public String postNewArticle(String title, String writer) throws Exception {
         // 获取序列
 
-        ArticleDAO ad = ServiceFactory.getService(ArticleDAO.class);
+        //ArticleDAO ad = ServiceFactory.getService(ArticleDAO.class);
         //ad.postNewArticle(title, writer);
         return "";
     }
@@ -115,6 +128,11 @@ public class ArticleSVImpl implements ArticleSV {
         for(CBNArticle article : articles){
             if(StringUtils.isEmpty(article.gethCode())){
                 article.sethCode(SequenceManager.getInstance().getNewSeq());
+            }
+            if(article.getCreateDate() == null){
+                // 这个地方为了防止数据初始化时时间相同
+                Thread.sleep(1000);
+                article.setCreateDate(new Date(System.currentTimeMillis()));
             }
         }
         ArticleDAO ad = ServiceFactory.getService(ArticleDAO.class);

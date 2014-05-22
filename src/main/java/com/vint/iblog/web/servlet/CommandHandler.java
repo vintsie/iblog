@@ -1,6 +1,7 @@
 package com.vint.iblog.web.servlet;
 
 import com.vint.iblog.command.service.impl.CacheRefreshExe;
+import com.vint.iblog.command.service.impl.DataStoreInitExe;
 import com.vint.iblog.command.service.impl.DevTempExe;
 import com.vint.iblog.command.service.impl.GitHubRefreshExe;
 import com.vint.iblog.command.service.interfaces.ICommandExe;
@@ -32,6 +33,7 @@ public class CommandHandler extends HttpServlet {
             put("C001", GitHubRefreshExe.class.getName());
             put("C002", CacheRefreshExe.class.getName());
             put("dev", DevTempExe.class.getName());
+            put("I00", DataStoreInitExe.class.getName());
         }
     };
 

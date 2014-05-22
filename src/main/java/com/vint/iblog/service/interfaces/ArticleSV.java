@@ -46,6 +46,15 @@ public interface ArticleSV {
     public List<ArticleCatalogCacheLoader.ArticleSummary> getCachedArticleList(String catalog) throws Exception;
 
     /**
+     * 查询缓存中的文章目录，需实现分页查询功能。
+     * @param pageNum   页码
+     * @param catalog   目录
+     * @return  文章简述列表
+     * @throws Exception
+     */
+    public List<ArticleCatalogCacheLoader.ArticleSummary> getCachedArticleList(int pageNum, String catalog) throws Exception;
+
+    /**
      * 修改文章
      * @param article   文章对象
      * @throws Exception
@@ -70,7 +79,14 @@ public interface ArticleSV {
      */
     public int readArticleViewCount(int articleId) throws Exception;
 
+
     public String saveArticle(CBNArticle article) throws Exception;
 
+    /**
+     * 批量保存article
+     *
+     * @param articles  article列表
+     * @throws Exception
+     */
     public void saveArticles(List<CBNArticle> articles) throws Exception;
 }

@@ -95,13 +95,18 @@ small {
     text-decoration: none;
     color: #56a0c7;
 }
-.posts li a:hover, .posts li a:focus{
+.posts li a:hover{
+    text-decoration: underline;
+    color: #2a6496;
+}
+.posts li a:focus{
     text-decoration: underline;
     color: #2a6496;
 }
 
 .posts li a:visited{
-    color: #56a0c7;
+    text-decoration: none;
+    /*color: #56a0c7;*/
 }
 
 .posts li .date{
@@ -130,6 +135,14 @@ small {
     left: 16px;
     top: 9px;
 }
+
+.copyright {
+margin-top: 50px;
+    text-align: center;
+    font-size: 11px;
+    color: #CFCFCF;
+}
+
 
 @media screen and (max-width: 240px) {
     .header{

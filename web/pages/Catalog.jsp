@@ -25,7 +25,7 @@
 <html>
 <head>
     <%@ include file="/common/CommonHead.jsp" %>
-    <title>Catalog</title>
+    <title><%=catalog.toUpperCase()%></title>
 
 </head>
 <body>

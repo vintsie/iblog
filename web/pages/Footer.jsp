@@ -11,4 +11,7 @@
         <div class="avatar"></div>
         Hi, This is me.
     </section>
+    <div class="copyright">
+        &copy; 2014 vin.is.coding@gmail.com
+    </div>
 </div>
