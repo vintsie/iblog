@@ -19,3 +19,5 @@
 <%@ page errorPage="/pages/Error.jsp" %>
 <link href="http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/statics/css/main.css">
+<script src="<%=request.getContextPath()%>/statics/js/jquery-1.11.1.min.js"></script>
+<script src="<%=request.getContextPath()%>/statics/js/detector.js"></script>

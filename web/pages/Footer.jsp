@@ -14,4 +14,5 @@
     <div class="copyright">
         &copy; 2014 vin.is.coding@gmail.com
     </div>
+    <script language="JavaScript">$(function(){optimize_style();});</script>
 </div>

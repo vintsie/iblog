@@ -20,6 +20,7 @@
         ArticleSV articleSV = ServiceFactory.getService(ArticleSV.class);
         CBNArticle article = articleSV.getArticle(hCode);
     %>
+    <title><%=CommonUtil.getNoMdTitle(article.getTitle())%></title>
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/statics/css/markdown.css">
 </head>
 <body>
