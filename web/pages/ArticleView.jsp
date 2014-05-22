@@ -28,8 +28,8 @@
 
 <div class="wrapper">
     <%@include file="Header.jsp"%>
-
-    <h2 style="margin-bottom: 5px"><%=CommonUtil.getNoMdTitle(article.getTitle())%></h2>
+    <div class="article_title">
+    <h2 style="margin-bottom: 5px"><%=CommonUtil.getNoMdTitle(article.getTitle())%></h2></div>
     <span class="meta"><%=TimeUtil.getDate(article.getCreateDate())%></span>
 
     <div class="a_content">
