@@ -13,10 +13,7 @@ import org.vint.iblog.common.bean.nor.CBNArticle;
 import org.vint.iblog.common.bean.nor.CBNGitHubCatalog;
 import org.vintsie.jcobweb.proxy.ServiceFactory;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 刷新GitHub内容
@@ -27,12 +24,11 @@ public class GitHubRefreshExe implements ICommandExe {
 
     private List<TempObject> adds = new ArrayList<TempObject>();
     private List<TempObject> modifies = new ArrayList<TempObject>();
-    private List<TempObject> deletes = new ArrayList<TempObject>();
+    private List<String> deletes = new ArrayList<String>();
 
     @Override
     public void execute(Map params) throws Exception {
         long startTimes = System.currentTimeMillis();
-        //String cmd = MapUtils.getString(params, "cmd");
 
         // 获取GitHub目录列表
         CommonSV commonSV = ServiceFactory.getService(CommonSV.class);
@@ -52,11 +48,12 @@ public class GitHubRefreshExe implements ICommandExe {
             List<String> remoteFileNames = parseFileNames(catalogFiles);
             Map<String, String> remoteFileSha = parseFileSha(catalogFiles);
 
-            List cached = (List)articleCatalog.get(catalog.getRepoInfo());
+            Set cached = (Set)articleCatalog.get(catalog.getRepoInfo());
             for(Object cache : cached){
                 ArticleCatalogCacheLoader.ArticleSummary as = (ArticleCatalogCacheLoader.ArticleSummary) cache;
                 if(!remoteFileNames.contains(as.getTitle())){
-                    deletes.add(new TempObject(as.getTitle(), catalog.getPath(), catalog.getOwner(), catalog.getRepo()));
+                    deletes.add(as.getHexCode());
+                    continue;
                 }
                 if(!as.getSha().equals(remoteFileSha.get(as.getTitle()))){
                     modifies.add(new TempObject(as.getTitle(), catalog.getPath(), catalog.getOwner(), catalog.getRepo()));
@@ -78,14 +75,34 @@ public class GitHubRefreshExe implements ICommandExe {
         }
 
         ArticleSV articleSV = ServiceFactory.getService(ArticleSV.class);
-        List<CBNArticle> addArticles = new ArrayList<CBNArticle>();
-        for(TempObject to : adds){
-            addArticles.add(vcSV.pullGitHubFile(to.getOwner(), to.getRepo(), to.getPath() + "/" + to.getName()));
-        }
-        articleSV.saveArticles(addArticles);
 
-        for(TempObject to : modifies){
-            articleSV.modifyArticle(vcSV.pullGitHubFile(to.getOwner(), to.getRepo(), to.getPath() + "/" + to.getName()));
+        if(adds.size() > 0){
+            List<CBNArticle> addArticles = new ArrayList<CBNArticle>();
+            for(TempObject to : adds){
+                addArticles.add(vcSV.pullGitHubFile(to.getOwner(), to.getRepo(), to.getPath() + "/" + to.getName()));
+            }
+            articleSV.saveArticles(addArticles);
+            if(log.isInfoEnabled()){
+                log.info("OK. Pulled " + addArticles.size() + " new article(s).");
+            }
+        }
+
+        if(modifies.size() > 0){
+            for(TempObject to : modifies){
+                articleSV.modifyArticle(vcSV.pullGitHubFile(to.getOwner(), to.getRepo(), to.getPath() + "/" + to.getName()));
+            }
+            if(log.isInfoEnabled()){
+                log.info("OK. Modified " + modifies.size() + " article(s)");
+            }
+        }
+
+        if(deletes.size() > 0){
+            for(String hexCode : deletes){
+                articleSV.deleteArticle(hexCode);
+            }
+            if(log.isInfoEnabled()){
+                log.info("OK, delete " + deletes.size() + " article(s).");
+            }
         }
 
         if(log.isInfoEnabled()){

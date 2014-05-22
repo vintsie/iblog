@@ -1,11 +1,9 @@
-import com.vint.iblog.common.CacheManager;
-import com.vint.iblog.common.cache.TestCacheDataLoader;
-import com.vint.iblog.datastore.define.CommonDAO;
 import com.vint.iblog.plugins.github.GitHubApiTool;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
-import org.vintsie.jcobweb.proxy.ServiceFactory;
+
+import java.util.Date;
 
 
 /**
@@ -28,8 +26,16 @@ public class TestMain {
     @Test
     public void testInsertCatalog() throws Exception{
         String s = "Hello World.";
-        System.out.println(s.substring(0, s.lastIndexOf("W")));
+        log.error(s.substring(0, s.lastIndexOf("W")));
         System.out.println(GitHubApiTool.pull(new String[]{"vintsie", "notebook", "_2014/_2014_01_06_wget_java_using_sh.md"}));
     }
 
+    @Test
+    public void testQQ() throws Exception{
+        for(int i=0; i<10; i++){
+            Thread.sleep(1000);
+            System.out.println(System.currentTimeMillis());
+        }
+        System.out.println("abcd".compareTo("abc2"));
+    }
 }

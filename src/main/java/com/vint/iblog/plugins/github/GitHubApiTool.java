@@ -76,11 +76,12 @@ public class GitHubApiTool {
     public static String request(String url) {
         StringBuilder content = new StringBuilder();
         try {
-            HttpRequestFactory hrf = new NetHttpTransport().createRequestFactory();
-            HttpRequest request = hrf.buildGetRequest(new GenericUrl(new URI(url)));
             if(log.isInfoEnabled()){
                 log.info("Start to request remote server, Url:" + url);
             }
+            HttpRequestFactory hrf = new NetHttpTransport().createRequestFactory();
+            HttpRequest request = hrf.buildGetRequest(new GenericUrl(new URI(url)));
+
             HttpResponse response = request.execute();
             if(log.isInfoEnabled()){
                 log.info("Server response code:" + response.getStatusCode());

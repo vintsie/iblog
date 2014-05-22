@@ -1,3 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cronentries>
+    <cron>
+        <url>/_admin/command?cmd=C001</url>
+        <description>Reload GitHub Data Every Day (1 AM beijing time every day).</description>
+        <schedule>every day 17:00</schedule>
+    </cron>
 </cronentries>
