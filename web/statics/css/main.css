@@ -67,10 +67,16 @@ a{
 }
 
 .meta{
-    padding-left: 3px;
+    padding-left: 8px;
     color: #aaa;
 }
+.article_title{
+    padding-left: 5px;
+}
 
+.a_content{
+    padding-left: 8px;
+}
 small {
     font-size: 0.875em;
 }
